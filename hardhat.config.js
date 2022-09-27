@@ -18,7 +18,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.17",
   paths: {
     artifacts: './src/artifacts'
   },
@@ -29,6 +29,10 @@ module.exports = {
     ropsten: {
       url: process.env.ROPSTEN_URL,
       accounts: [`0x${process.env.ROPSTEN_PRIVATE_KEY}`]
+    },
+    goerli: {
+      url: process.env.GOERLI_URL,
+      accounts: [`0x${process.env.GOERLI_PRIVATE_KEY}`]
     }
   }
 };
