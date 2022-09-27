@@ -1,10 +1,4 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftomhirst%2Fsolidity-nextjs-starter)
-
-# A full stack dApp starter built on Ethereum (Solidity) with Next.js (React)
-
-This repo contains boilerplate code for interacting with a simple smart contract from the client-side using [Solidity](https://soliditylang.org/), [React](https://reactjs.org/) and [TailwindCSS](https://tailwindcss.com/).
-
-![Solidity + Next.js Starter](/public/screenshot.png)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%joshmayr%2Fpanda-swap)
 
 ## Prerequisites
 
@@ -15,7 +9,7 @@ This repo contains boilerplate code for interacting with a simple smart contract
 
 ### Clone This Repo
 
-Use `git clone https://github.com/tomhirst/solidity-nextjs-starter.git` to get the files within this repository onto your local machine.
+Use `git clone https://github.com/joshmayr/panda-swap.git` to get the files within this repository onto your local machine.
 
 ### Environment Setup
 
@@ -49,7 +43,8 @@ Then in a new terminal window, `npx hardhat run scripts/deploy.js --network loca
 If you're successful, you'll get something like the following CLI output:
 
 ```
-Greeter deployed to: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
+TEST NFT deployed to: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
+Swap deployed to: 0x3aF32612209e1C1b76C1942D7372aC1c6a8cb1d4
 ```
 
 ### Adding A Local Account To MetaMask
@@ -62,7 +57,7 @@ If you're successful, you should see the a balance resembling something like `10
 
 ### Connecting The Front-End
 
-In `.env` set the `NEXT_PUBLIC_GREETER_ADDRESS` environment variable to the address your smart contract was deployed to. For example, `0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0`.
+In `.env` set `NEXT_PUBLIC_NFT_ADDRESS` & `NEXT_PUBLIC_SWAP_ADDRESS` environment variables to the address your smart contract was deployed to. For example, `0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0`.
 
 In a new terminal window, load the front-end with `npm run dev`. If you want to use an alternate port from `3000`, use `npm run dev -- --port=1234`, or whatever port number you prefer.
 
@@ -70,27 +65,21 @@ In a new terminal window, load the front-end with `npm run dev`. If you want to 
 
 Once set up, go to `localhost:3000` (or whatever post number you used), to view your dApp in the browser.
 
-Clicking `Fetch greeting from the blockchain` should bring back a value of `Hello world!` in the input above. This is the default string passed to the smart contract on first deloy.
+Clicking `Mint` will bring you to the Mint page where you can mint Test NFTs in different wallets.
 
-To update the greeting value, type something in the input with placeholder `Write a new greeting`, then click `Set new greeting on the blockchain`. If you're successful, a MetaMask window will open in your browser. From here you can connect the local account you added earlier and sign the transaction.
+Clicking `Swap` will bring you to the Swap page where you can create and respond to different trade requests.
 
-Click `Fetch greeting from the blockchain` again to see the changes you've made.
+If you are creating a new trade request you will need to know the wallet address of the other party as well as the NFT ids that you wish to trade. After creating a trade request you will need to send the trade request id to the other party.
 
-## Editing The Front-End
-
-To modify the front page of your application, edit `pages/index.js`.
-
-All [TailwindCSS classes](https://tailwindcss.com/docs) are available to you.
-
-To lint your front-end code, use `npm run lint`.
+To accept or reject a trade request, search for the trade request by querying by trade id.
 
 ## Testing
 
 To test your smart contracts, run `npx hardhat test`.
 
-A sample test can be found in `test/sample-test.js`.
+A sample test can be found in `test/swap-test.js`.
 
-## Deploying To The Ropsten Test Network
+## Deploying To The Goerli Test Network
 
 *This is a more advanced step after running the smart contract locally.*
 
@@ -98,59 +87,8 @@ Up to now, the smart contract has been running on a local blockchain. The next s
 
 ### MetaMask
 
-First, switch your MetaMask network from `Localhost 8545` to `Ropsten Test Network`.
+First, switch your MetaMask network from `Localhost 8545` to `Goerli Test Network`.
 
-Then, view the account details of your test account. Click `Export Private Key`. After entering your password, you'll be given a private key. Copy and paste your private key (example, `df57089aefbcaf7ba0bc227dafbffa9fc08a93fdc65e1e42214a14efcf23656e`) as the value of `ROPSTEN_PRIVATE_KEY` in `.env`.
+Then, view the account details of your test account. Click `Export Private Key`. After entering your password, you'll be given a private key. Copy and paste your private key (example, `df57089aefbcaf7ba0bc227dafbffa9fc08a93fdc65e1e42214a14efcf23656e`) as the value of `GOERLI_PRIVATE_KEY` in `.env`.
 
 **Important:** Never expose the private key of an account with real assets inside. Always add private keys as environment variables. Never commit private keys to code.
-
-### Infura
-
-[Infura](https://infura.io/) is a service that allows developers to connect to Ethereum infrastructure through their API. In this boilerplate, we'll be using Infura to deploy our smart contract to the Ropsten test network.
-
-Sign up for an account if you don't have one already, then [create a new Ethereum project](https://infura.io/dashboard/ethereum/). Name your project, then select `Ropsten` from the endpoints drop down. Save changes.
-
-Copy and paste the URL starting with `https` and set it as the `ROPSTEN_URL` value in your `.env` file.
-
-### Obtaining Test ETH
-
-You'll need some test ETH in your wallet for use on Ropsten. Head over to the [Ropsten Ethereum Faucet](https://faucet.ropsten.be/), paste in your wallet account address (for example, `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`) and press `Send me test Ether`.
-
-In a few minutes, you should see your balance update in MetaMask. This is your test ETH.
-
-### Deploying Your Smart Contract To Ropsten
-
-In your terminal enter, `npx hardhat run scripts/deploy.js --network ropsten`.
-
-If you're successful, you'll get a confirmation message as follows:
-
-```
-Greeter deployed to: 0x9045cEc7161f380C224ae95c15EbE96659A53c46
-```
-
-This address is where your smart contract is deployed on the Ropsten Test Network.
-
-Post deployment, you should also see your ETH decrease a little in MetaMask from the gas transaction fee.
-
-### Etherscan
-
-Because your smart contract is now deployed to a live test network, you'll be able to view it's details on [Etherscan](https://ropsten.etherscan.io/). Go to [Ropsten Etherscan](https://ropsten.etherscan.io/) and copy and paste the address you were given in the previous step (for example, `0x9045cEc7161f380C224ae95c15EbE96659A53c46`) into the explorer.
-
-You'll be able to see all historical transactions and events here.
-
-### Testing The Functionality
-
-Change the `NEXT_PUBLIC_GREETER_ADDRESS` variable in `.env` to be the smart contract address on the Ropsten Test Network (for example, `0x9045cEc7161f380C224ae95c15EbE96659A53c46`).
-
-Start (or restart) the front-end using `npm run dev`.
-
-Fetching the greeting from the blockchain will return `Hello world!` on first run.
-
-Setting a new greeting may take a little longer than it did locally as we're using a real test network.
-
-All instance of setting a new greeting will now create a transaction attached to the smart contract that you can view on [Ropsten Etherscan](https://ropsten.etherscan.io/)
-
-## Roadmap
-
-- Add a [smart contract for minting NFTs](https://docs.openzeppelin.com/contracts/3.x/erc721)
-- Create a TypeScript fork
