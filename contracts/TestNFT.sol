@@ -10,9 +10,7 @@ contract TestNFT is ERC721 {
 
     Counters.Counter private tokenIds;
 
-    constructor() ERC721("Test NFT", "tNFT") {
-
-    }
+    constructor() ERC721("Test NFT", "tNFT") {}
 
     function mint() public {
         _safeMint(msg.sender, tokenIds.current());
