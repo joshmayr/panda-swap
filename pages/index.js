@@ -1,8 +1,7 @@
-import Head from "next/head";
 import { useEffect, useState, useRef } from "react";
 import { ethers } from "ethers";
-import Swap from "../src/artifacts/contracts/Swap.sol/Swap.json";
-import TestNFT from "../src/artifacts/contracts/TestNFT.sol/TestNFT.json";
+import { Swap } from "../utils/Swap.json";
+import { TestNFT } from "../utils/TestNFT.json"
 import { useMoralis } from "react-moralis";
 import { ConnectButton } from "web3uikit";
 import { Navbar } from "./components/header";
