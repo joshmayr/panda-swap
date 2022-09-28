@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { ethers } from "ethers";
 import { HeadDetails } from "./components/head";
-import { TestNFT } from "../utils/TestNFT.json";
+import TestNFT from "../utils/TestNFT.json";
 import { useMoralis } from "react-moralis";
 import { Navbar } from "./components/header";
 import { ConnectButton } from "web3uikit";
