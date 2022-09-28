@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { ethers } from "ethers";
-import Swap from "../utils/Swap.json";
-import TestNFT from "../utils/TestNFT.json"
 import { useMoralis } from "react-moralis";
 import { ConnectButton } from "web3uikit";
-import { Navbar } from "./components/header";
-import { HeadDetails } from "./components/head";
+import Swap from "../utils/Swap.json";
+import TestNFT from "../utils/TestNFT.json";
+import Navbar from "./components/header";
+import HeadDetails from "./components/head";
 
 export default function Trade() {
   const [senderAddress, setSenderAddress] = useState("");

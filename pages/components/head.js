@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export const HeadDetails = () => {
+export default function HeadDetails() {
   return (
     <Head>
       <title>Solidity Next.js Starter</title>
