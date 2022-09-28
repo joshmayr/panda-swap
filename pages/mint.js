@@ -28,6 +28,7 @@ export default function Home() {
     } else {
       console.log("Ethereum object not found")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, chainId])
 
   async function mintNFT() {

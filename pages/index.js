@@ -46,6 +46,7 @@ export default function Trade() {
     } else {
       console.log("Ethereum object not found")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, chainId])
 
   async function queryTradeRequest(newTradeId) {
@@ -176,6 +177,7 @@ export default function Trade() {
           nftContract.off("Approval", onApprovalUpdated)
         }
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nftContract, senderAddress, receiverAddress, senderTokenId])
 
   useEffect(() => {
@@ -199,6 +201,7 @@ export default function Trade() {
           swapContract.off("TradeCreated", onTradeUpdated)
         }
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [swapContract, senderAddress, receiverAddress, senderTokenId, receiverTokenId])
 
 
@@ -264,12 +267,14 @@ async function getReceiverStatus() {
 
   useEffect(() => {
     getSenderStatus()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [senderTokenId, senderAddress])
 
   
 
   useEffect(() => {
     getReceiverStatus()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [receiverTokenId, receiverAddress])
 
   return (
